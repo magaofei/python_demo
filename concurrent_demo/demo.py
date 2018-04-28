@@ -15,15 +15,17 @@ def test(value=None):
     """
     测试函数
     """
-    URL = 'http://httpbin.org/get'
+    # URL = 'https://httpbin.org/get'
+    URL = 'http://www.baidu.com'
     r = requests.get(URL)
-    
     
 
 class OriginDemo():
     def __init__(self):
         for _ in range(100):
             test()
+
+
 class ThreadDemo():
     """
     Python3 名称为 _thread
@@ -38,7 +40,6 @@ class ThreadDemo():
         for i in range(100):
             _thread.start_new_thread(test, ("foo",))
     
-
 
 class ThreadingDemo(object):
     """
@@ -55,6 +56,8 @@ class ThreadingDemo(object):
         for _ in range(100):
             t = threading.Thread(target=test)
             threads.append(t)
+            
+        for t in threads:
             t.start()
         
         for t in threads:
@@ -83,22 +86,25 @@ class ConcurrentThreadingDemo(object):
 
 if __name__ == '__main__':
     
-    profile.run('ThreadDemo()')
+    # profile.run('ThreadDemo()')
 
     time0 = time.time()
-    profile.run('OriginDemo()')
+    OriginDemo()
+    # profile.run('OriginDemo()')
     print("OriginDemo\t" + str(time.time() - time0))
 
     time.sleep(5)
     
     time0 = time.time()
-    profile.run('ThreadingDemo()')
+    # profile.run('ThreadingDemo()')
+    ThreadingDemo()
     print("ThreadingDemo\t" + str(time.time() - time0))
 
     time.sleep(5)
 
     time0 = time.time()
-    profile.run('ConcurrentThreadingDemo()')
+    # profile.run('ConcurrentThreadingDemo()')
+    ConcurrentThreadingDemo()
     print("ConcurrentThreadingDemo\t" + str(time.time() - time0))
 
     
