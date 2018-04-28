@@ -3,16 +3,28 @@ import threading
 import multiprocessing
 
 import concurrent.futures
+
+import requests
+import profile
+import cProfile
+import time
+
 MAX_WORKER = 10
 
 def test(value=None):
     """
     测试函数
     """
-    print(value)
+    URL = 'http://httpbin.org/get'
+    r = requests.get(URL)
+    
+    
 
-
-class ThreadDemo(object):
+class OriginDemo():
+    def __init__(self):
+        for _ in range(100):
+            test()
+class ThreadDemo():
     """
     Python3 名称为 _thread
     几乎没有用过
@@ -22,9 +34,10 @@ class ThreadDemo(object):
     - 中断和退出 interrupt_main  exit
 
     """
-    def run(self):
-        _thread.start_new_thread(test, "foo")
-
+    def __init__(self):
+        for i in range(100):
+            _thread.start_new_thread(test, ("foo",))
+    
 
 
 class ThreadingDemo(object):
@@ -37,14 +50,16 @@ class ThreadingDemo(object):
     - 信号量
     """
 
-    def run(self):
+    def __init__(self):
         threads = []
-        for i in range(MAX_WORKER):
-            t = threading.Thread(target=test, kwargs=("foo"))
+        for _ in range(100):
+            t = threading.Thread(target=test)
             threads.append(t)
             t.start()
         
         for t in threads:
+            # 线程激活数
+            # print(threading.active_count())
             t.join()
 
 class ConcurrentThreadingDemo(object):
@@ -57,16 +72,36 @@ class ConcurrentThreadingDemo(object):
 
     """
 
-    def run(self):
+    def __init__(self):
         with concurrent.futures.ThreadPoolExecutor(MAX_WORKER) as exector:
-            values = (i for i in range(10))
+            values = (i for i in range(100))
             results = exector.map(test, values)
             
             concurrent.futures.as_completed(results)
 
 
 
+if __name__ == '__main__':
     
+    profile.run('ThreadDemo()')
 
+    time0 = time.time()
+    profile.run('OriginDemo()')
+    print("OriginDemo\t" + str(time.time() - time0))
 
+    time.sleep(5)
+    
+    time0 = time.time()
+    profile.run('ThreadingDemo()')
+    print("ThreadingDemo\t" + str(time.time() - time0))
+
+    time.sleep(5)
+
+    time0 = time.time()
+    profile.run('ConcurrentThreadingDemo()')
+    print("ConcurrentThreadingDemo\t" + str(time.time() - time0))
+
+    
+    # cProfile.run('thread_demo()')
+    
 
