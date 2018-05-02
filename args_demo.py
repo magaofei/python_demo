@@ -1,6 +1,8 @@
 
 def tag(name, *content, cls=None, **attrs):
     """ generatr HTML Tag """
+
+    """ 赋值cls标签 """
     if cls is not None:
         attrs['class'] = cls
     if attrs:
@@ -55,7 +57,9 @@ if __name__ == '__main__':
     """ tag('p', 'hello', 'world', cls='sidebar')  
     <p class="sidebar">hello</p> 
     <p class="sidebar">world</p> """
-    r = tag()
+    r = tag('p', 'hello', 'world', cls='sidebar')
+    print(locals())
+    print(globals())
     print(r)
 
 
