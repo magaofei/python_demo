@@ -49,6 +49,12 @@ class Test(object):
 def test_singleton(i):
     print(id(Test(i)))
 
+def singleton_func():
+    pass
+
+def test_func_singleton(i):
+    print(id(singleton_func()))
+
 def open_threading():
     print("threading")
     with concurrent.futures.ThreadPoolExecutor(10) as future:
