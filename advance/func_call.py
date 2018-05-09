@@ -18,7 +18,7 @@ if __name__ == '__main__':
     args = ','.join((str(v) for k, v in data.items()))
     # print(args)
     # eval('fun1(' + args + ')')
-    getattr(__file__, 'fun1')(1, 2)
+    getattr(, 'fun1')(1, 2)
 
     args = data
 
