@@ -10,7 +10,7 @@ port = 12345                # 设置端口
 s.bind((host, port))        # 绑定端口
 
 s.listen(5)                 # 等待客户端连接
-while True:
+while 1:
     c, addr = s.accept()     # 建立客户端连接。
     print('address is ', addr)
     c.send(b'welcome come to connect ')
