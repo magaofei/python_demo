@@ -26,9 +26,29 @@ def binary_search(foo_array, start, end, key):
 
     return half
 
+
+def binary_search_stack(foo_array, start, end, key):
+    """
+    二分查找
+    """
+
+    while start <= end:
+        mid = (end + start) // 2
+        val = foo_array[mid]
+        
+        if key == val:
+            return val
+        elif key > val:
+            start = mid + 1
+        elif key < val:
+            end = mid - 1
+
+    return -1
+
+
 if __name__ == '__main__':
     # foo_array = [i for i in range(10)]
     foo_array = [1, 2, 3, 4, 5, 6]
 
-    result = binary_search(foo_array, 0, len(foo_array) - 1, 2)
+    result = binary_search_stack(foo_array, 0, len(foo_array) - 1, 3)
     print(result)

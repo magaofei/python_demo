@@ -20,7 +20,7 @@ class Number(object):
     def __iter__(self):
         for n in self.nums:
             yield n
-            
+
 
 if __name__ == '__main__':
     r = Number(123)
