@@ -58,8 +58,8 @@ if __name__ == '__main__':
     <p class="sidebar">hello</p> 
     <p class="sidebar">world</p> """
     r = tag('p', 'hello', 'world', cls='sidebar')
-    print(locals())
-    print(globals())
+    # print(locals())
+    # print(globals())
     print(r)
 
 
