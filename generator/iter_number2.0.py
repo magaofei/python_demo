@@ -13,9 +13,6 @@ class IterNumber(object):
         self.num = num
         self.index = 1
     
-    def __iter__(self):
-        return self
-    
     def __next__(self):
         
         r = int(self.num / self.index % 10)
