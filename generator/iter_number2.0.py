@@ -21,6 +21,9 @@ class IterNumber(object):
         self.index *= 10
         return r
 
+    def __iter__(self):
+        return self
+
 class Number(object):
     def __init__(self, num):
         self.num = num
@@ -28,9 +31,14 @@ class Number(object):
     def __iter__(self):
         return IterNumber(self.num)
 
+    def reverse(self):
+        return ReverseIterNumber(self.num)
 
 if __name__ == '__main__':
     r = Number(123)
     for i in r:
+        print(i)
+
+    for i in r.reverse():
         print(i)
 
