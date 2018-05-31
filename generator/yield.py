@@ -17,10 +17,13 @@ def odd():
     yield 3
     print('step 3')
     yield 5
+
 if __name__ == '__main__':
-    r = dib(6)
-    print(r)
+    # r = dib(6)
+    # print(r)
 
     o = odd()
-    o.next()
-    o.next()
+    next(o)
+    next(o)
+    next(o)
+    next(o)

@@ -39,6 +39,6 @@ if __name__ == '__main__':
     for i in r:
         print(i)
 
-    for i in r.reverse():
-        print(i)
+    # for i in r.reverse():
+        # print(i)
 
